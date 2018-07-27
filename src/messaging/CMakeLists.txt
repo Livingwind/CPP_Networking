@@ -1,0 +1,1 @@
+add_library(messaging messaging_main.cpp)
