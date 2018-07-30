@@ -4,8 +4,13 @@
 //
 
 #include <iostream>
+#include <boost/array.hpp>
+#include <boost/asio.hpp>
 #include "server_main.h"
+
+using boost::asio::ip::tcp;
 
 void server::server_test() {
     std::cout << "Server" << std::endl;
+
 }

@@ -4,6 +4,10 @@ set(CMAKE_CXX_STANDARD 17)
 
 include(GNUInstallDirs)
 
+find_package(Boost REQUIRED system thread regex)
+
+message(${Boost_LIBRARY_DIRS})
+
 add_subdirectory(server)
 add_subdirectory(messaging)
 
