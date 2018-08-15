@@ -1,7 +1,7 @@
 // Every adventure has to start somewhere. This file just happens to be my 4th...
 
 #include <iostream>
-#include "messaging/messaging_main.h"
+#include "messaging/Messenger.h"
 #include "server/Server.h"
 
 int main(int argc, char* argv[]) {
@@ -14,6 +14,9 @@ int main(int argc, char* argv[]) {
         Server server(argv[2]);
         server.start();
     }
-    else if(argv[1] == "messaging") {}
+    else if("messenger" == std::string(argv[1])) {
+        Messenger messenger(argv[2], argv[3]);
+        messenger.start();
+    }
     return 0;
 }

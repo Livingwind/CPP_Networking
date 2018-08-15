@@ -34,15 +34,25 @@ Server::Server(const std::string port)
   termination_signals.add(SIGTERM); // (2)
   termination_signals.add(SIGQUIT); // (3)
 
-  termination_signals.async_wait([this](boost::system::error_code, int) { stop(); }); // (4)
+  termination_signals.async_wait(
+      [this](boost::system::error_code error_code, int) {
+        std::cout << "Intercepted signal [" << error_code << "]" << std::endl;
+        stop();
+      }); // (4)
 
   tcp::resolver resolver(io_context);
-  tcp::endpoint endpoint = *resolver.resolve("0.0.0.0", port /*TODO change this to be dynamic*/).begin();
+  tcp::endpoint endpoint = *resolver.resolve("0.0.0.0", port).begin();
   acceptor.open(endpoint.protocol());
   acceptor.bind(endpoint);
   acceptor.listen();  // (5)
 
   register_accept();  // (6)
+}
+
+Server::~Server() {
+  if (acceptor.is_open()) {
+    stop();
+  }
 }
 
 /**

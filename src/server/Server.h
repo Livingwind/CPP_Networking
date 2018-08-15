@@ -16,7 +16,7 @@ class Server {
 
 public:
     Server(std::string port);
-    ~Server() noexcept = default;
+    ~Server() noexcept;
 
     Server(const Server&) = delete;
     Server& operator=(const Server&) = delete;

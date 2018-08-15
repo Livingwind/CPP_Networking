@@ -1,1 +1,1 @@
-add_library(messaging messaging_main.cpp)
+add_library(messaging Messenger.cpp)
